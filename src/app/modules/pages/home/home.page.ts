@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -12,22 +13,22 @@ export class HomePage implements OnInit {
   studentEmail: string = '';
   studentRole: string = '';
 
-  constructor() {}
+  token = localStorage.getItem('token');
+
+  constructor(private router: Router, private _cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
 
-  const token = localStorage.getItem('token');
-
-  if (token !== null) {
-    const decoded: any = jwt_decode(token);
-    console.log('Token decodificado:', decoded);
+  if (this.token !== null) {
+    const decoded: any = jwt_decode(this.token);
     this.studentLogged = decoded['username'];
     this.studentEmail = decoded['email'];
     this.studentRole = decoded['role'];
   } else {
-    console.log("No hay token");
+      this.router.navigate(['/login']);
+      return;
   }
-
+  this._cdr.detectChanges();
 }
 
 }
