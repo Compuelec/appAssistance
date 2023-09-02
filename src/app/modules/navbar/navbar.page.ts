@@ -12,8 +12,6 @@ export class NavbarPage implements OnInit {
   studentEmail: string = '';
   studentRole: string = '';
 
-  logout = false;
-
   token = localStorage.getItem('token');
 
   constructor(private _cdr: ChangeDetectorRef, private router: Router) { }
@@ -22,18 +20,15 @@ export class NavbarPage implements OnInit {
 
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
-      console.log('Token decodificado:', decoded);
       this.studentLogged = decoded['username'];
       this.studentEmail = decoded['email'];
       this.studentRole = decoded['role'];
-      this.logout = true;
     }
     this._cdr.detectChanges();
   }
 
   logoutUser() {
     localStorage.removeItem('token');
-    this.logout = false;
     this.router.navigate(['/login']);
   }
 
