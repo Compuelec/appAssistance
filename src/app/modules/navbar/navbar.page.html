@@ -1,5 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>navbar</ion-title>
+    <ion-title>Control de Asistencia</ion-title>
+    <p *ngIf="logout" (click)="logoutUser()">Cerrar Sesion</p>
   </ion-toolbar>
 </ion-header>
