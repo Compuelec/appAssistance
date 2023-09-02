@@ -1,7 +1,51 @@
 <app-navbar></app-navbar>
 <ion-content [fullscreen]="true">
   <div id="container">
-    <strong>Bienvenido</strong>
-    <p>{{ studentLogged }}</p>
+    <ion-card>
+      <ion-card-header>
+        <strong>Bienvenido {{ studentLogged }}</strong>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <img alt="Silhouette of mountains" src="assets/img/home/principal-home.jpeg" />
+                <ion-card-header>
+                  <ion-card-title>Pagina de Inicio</ion-card-title>
+                  <ion-card-subtitle></ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content>
+                  Aqui tendras acceso a todos tus datos y a las acciones que puedes realizar en la aplicación.
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large">
+                <ion-icon name="school"></ion-icon>
+                Ingresa a tu Clase
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large">
+                <ion-icon name="calendar"></ion-icon>
+                Ver Horario
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large">
+                <ion-icon name="options"></ion-icon>
+                Otra Acción
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <!-- Agrega más botones con iconos según sea necesario -->
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
+
