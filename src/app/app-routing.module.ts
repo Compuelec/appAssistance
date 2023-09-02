@@ -14,7 +14,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },  {
+    path: 'recory-password',
+    loadChildren: () => import('./recory-password/recory-password.module').then( m => m.RecoryPasswordPageModule)
   },
+
 ];
 
 @NgModule({
