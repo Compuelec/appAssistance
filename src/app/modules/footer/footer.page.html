@@ -1,6 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>footer</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" href="/home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
 
+    <ion-tab-button tab="login" href="/login">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Perfil</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="opciones">
+      <ion-icon name="settings"></ion-icon>
+      <ion-label>Opciones</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
