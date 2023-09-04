@@ -4,13 +4,31 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Lunes</ion-card-title>
+          <ion-card-header (click)="toggleCard('lunes')">
+            <ion-card-title>
+              <ion-label>Lunes</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['lunes']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['lunes']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 1</p>
-            <p>2. Materia 2</p>
-            <p>3. Materia 3</p>
+          <ion-card-content *ngIf="cards['lunes']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 1</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 1</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 2</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 2</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 3</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 3</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -20,13 +38,31 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Martes</ion-card-title>
+          <ion-card-header text-center (click)="toggleCard('martes')">
+            <ion-card-title>
+              <ion-label>Martes</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['martes']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['martes']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 4</p>
-            <p>2. Materia 5</p>
-            <p>3. Materia 6</p>
+          <ion-card-content *ngIf="cards['martes']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 4</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 4</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 5</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 5</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 6</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 6</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -36,13 +72,31 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Miércoles</ion-card-title>
+          <ion-card-header text-center (click)="toggleCard('miercoles')">
+            <ion-card-title>
+              <ion-label>Miércoles</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['miercoles']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['miercoles']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 7</p>
-            <p>2. Materia 8</p>
-            <p>3. Materia 9</p>
+          <ion-card-content *ngIf="cards['miercoles']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 7</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 7</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 8</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 8</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 9</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 9</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -52,13 +106,31 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Jueves</ion-card-title>
+          <ion-card-header text-center (click)="toggleCard('jueves')">
+            <ion-card-title>
+              <ion-label>Jueves</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['jueves']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['jueves']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 10</p>
-            <p>2. Materia 11</p>
-            <p>3. Materia 12</p>
+          <ion-card-content *ngIf="cards['jueves']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 10</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 10</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 11</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 11</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 12</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 12</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -68,13 +140,31 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Viernes</ion-card-title>
+          <ion-card-header text-center (click)="toggleCard('viernes')">
+            <ion-card-title>
+              <ion-label>Viernes</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['viernes']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['viernes']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 13</p>
-            <p>2. Materia 14</p>
-            <p>3. Materia 15</p>
+          <ion-card-content *ngIf="cards['viernes']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 13</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 13</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 14</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 14</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 15</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 15</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -84,16 +174,35 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Sábado</ion-card-title>
+          <ion-card-header text-center (click)="toggleCard('sabado')">
+            <ion-card-title>
+              <ion-label>Sábado</ion-label>
+              <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['sabado']"></ion-icon>
+              <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['sabado']"></ion-icon>
+            </ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <p>1. Materia 16</p>
-            <p>2. Materia 17</p>
-            <p>3. Materia 18</p>
+          <ion-card-content *ngIf="cards['sabado']">
+            <ion-list>
+              <ion-item>
+                <ion-label>Materia 16</ion-label>
+                <ion-note slot="end">Horario: 9:00 AM - 10:30 AM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 16</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 17</ion-label>
+                <ion-note slot="end">Horario: 10:45 AM - 12:15 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 17</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label>Materia 18</ion-label>
+                <ion-note slot="end">Horario: 1:30 PM - 3:00 PM</ion-note>
+                <ion-note slot="end">Profesor: Profesor 18</ion-note>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-content>

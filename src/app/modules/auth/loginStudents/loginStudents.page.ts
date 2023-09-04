@@ -58,6 +58,11 @@ async login(email: string, password: string) {
     error: (error: any) => {
       if (error.status === 401) {
         this.mostrarErrorAlert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+        loading.dismiss();
+      }
+      if (error.status === 500) {
+        this.mostrarErrorAlert('Error en el servidor. Por favor, inténtalo de nuevo.');
+        loading.dismiss();
       }
     },
     complete: () => {
