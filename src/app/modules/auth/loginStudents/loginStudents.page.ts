@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 import { AuthService } from '../../../services/apiLogin.service';
 import { LoginData } from '../../../interfaces/login.interface';
@@ -16,39 +17,55 @@ export class LoginStudentsPage implements OnInit {
   password:string = "";
   messageError:string = "";
 
+ token = localStorage.getItem('token');
+
   private subscription: Subscription | undefined;
 
-  constructor(private _authService: AuthService, private router: Router, private alertController: AlertController) { }
+  constructor(
+    private _authService: AuthService,
+    private router: Router,
+    private alertController: AlertController,
+    private loadingCtrl: LoadingController,
+    private _cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    const token = localStorage.getItem('token');
-
-    if (token !== null) {
+    if (this.token !== null) {
       this.router.navigate(['/home']);
-      return;
     }
+    this._cdr.detectChanges();
   }
-  login(email: string, password: string) {
-    if (!this.isValidEmail(email) || !this.isValidPassword(password)) {
-        this.mostrarErrorAlert('Email no valido o contraseña no valida');
-        return;
-      }
-    const credentials: LoginData = { email, password };
+async login(email: string, password: string) {
+  if (!this.isValidEmail(email) || !this.isValidPassword(password)) {
+    this.mostrarErrorAlert('Email no valido o contraseña no valida');
+    return;
+  }
 
-    this.subscription = this._authService.loginStudents(credentials).subscribe({
-      next: (response: any) => {
-        if (response && response.token) {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/home']);
-        }
-      },
-      error: (error: any) => {
-        if (error.status === 401) {
-          this.mostrarErrorAlert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-        }
-      },
-    });
-  }
+  const credentials: LoginData = { email, password };
+
+  const loading = await this.loadingCtrl.create({
+    message: 'Conectando...',
+  });
+
+  await loading.present();
+
+  this.subscription = this._authService.loginStudents(credentials).subscribe({
+    next: (response: any) => {
+      if (response && response.token) {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
+      }
+    },
+    error: (error: any) => {
+      if (error.status === 401) {
+        this.mostrarErrorAlert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      }
+    },
+    complete: () => {
+      loading.dismiss();
+    }
+  });
+}
+
 
   ngOnDestroy() {
     if (this.subscription) {

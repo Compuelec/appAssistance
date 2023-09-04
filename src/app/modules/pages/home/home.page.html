@@ -1,6 +1,5 @@
-<app-navbar></app-navbar>
 <ion-content [fullscreen]="true">
-  <div id="container">
+  <div id="container" class="margin-top-navbar">
     <ion-card>
       <ion-card-header>
         <strong>Bienvenido {{ studentLogged }}</strong>
@@ -30,7 +29,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="12">
-              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large" href="/class-times">
                 <ion-icon name="calendar"></ion-icon>
                 Ver Horario
               </ion-button>
