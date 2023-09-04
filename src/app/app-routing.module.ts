@@ -19,7 +19,11 @@ const routes: Routes = [
     {
       path: 'class-times',
       loadChildren: () => import('./modules/pages/class-times/class-times.module').then( m => m.ClassTimesPageModule)
-    },
+    },  {
+    path: 'profile',
+    loadChildren: () => import('./modules/pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+
 ];
 
 @NgModule({
