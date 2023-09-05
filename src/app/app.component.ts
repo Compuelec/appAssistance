@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
+
+  get validToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }

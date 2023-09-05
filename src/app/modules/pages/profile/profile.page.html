@@ -1,0 +1,42 @@
+
+<ion-content>
+  <ion-card class="margin-top-navbar">
+    <ion-card-header>
+      <ion-card-title>Perfil de Usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Foto de perfil -->
+      <div class="profile-picture">
+        <img src="assets/img/navbar/user.png" alt="Foto de perfil">
+      </div>
+
+      <!-- Nombre -->
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input [(ngModel)]="userProfile.name" disabled></ion-input>
+      </ion-item>
+
+      <!-- Rut -->
+      <ion-item>
+        <ion-label position="stacked">Rut</ion-label>
+        <ion-input [(ngModel)]="userProfile.rut" disabled></ion-input>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="userProfile.email" disabled></ion-input>
+      </ion-item>
+
+      <!-- Nombre de usuario -->
+      <ion-item>
+        <ion-label position="stacked">Nombre de Usuario</ion-label>
+        <ion-input [(ngModel)]="userProfile.username" disabled></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para abrir el modal de edición -->
+  <ion-button expand="full" (click)="openEditModal()">Editar Perfil</ion-button>
+</ion-content>
+
