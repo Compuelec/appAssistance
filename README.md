@@ -1,6 +1,6 @@
 # Control de Asistencia para Colegio - Proyecto DUOC
 
-Este repositorio contiene el código fuente de una aplicación de control de asistencia para un colegio, desarrollada como parte del proyecto para el instituto DUOC. La aplicación está construida utilizando Ionic y Angular.
+Este repositorio contiene el código fuente de una aplicación de control de asistencia para un colegio, desarrollada como parte del proyecto en el Instituto DUOC. La aplicación está construida utilizando Ionic y Angular.
 
 ## Requisitos Previos
 
@@ -8,28 +8,69 @@ Este repositorio contiene el código fuente de una aplicación de control de asi
 
 ## Instalación
 
-1. **Clona el repositorio**: 
+1. **Version Node**:
+   ```bash
+   $ v19.4.0
+   ```
+
+2. **Clona el repositorio**: 
 
    ```bash
    git clone https://github.com/Compuelec/appAssistance.git
    ```
 
-2. **Navega al directorio del proyecto**:
+3. **Navega al directorio del proyecto**:
    
     ```bash
     cd appAssistance
     ```
 
-3. **Instalar las dependencias**:
+4. **Instalar las dependencias**:
 
     ```bash
     npm install
     ```
-4. **Iniciar el servidor de desarrollo**:
+5. **Iniciar el servidor de desarrollo**:
 
     ```bash
     ionic serve
     ```
 
 
+# Configuración de la API
 
+Este proyecto se conecta a una API que gestiona los datos de asistencia. Puedes encontrar la API en el siguiente enlace: [API del Proyecto.](https://github.com/Compuelec/apiAppAssistance) Para conectarte a la API de manera local, sigue estos pasos:
+
+## Version Node
+```bash
+$ v19.4.0
+```
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# docker postgres database
+$ docker-compose up -d
+
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Demo de API y documentación
+
+<a href="https://nest-app-assistance-postgres.onrender.com/doc" target="_blank">LINK</a>
+
+## Apk de prueba
+[Descarga la apk desde drive](https://drive.google.com/file/d/101y8uTBcNi-88XoObiHFkitz5T54GUtB/view?usp=sharing)
