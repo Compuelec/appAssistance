@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://nest-app-assistance-postgres.onrender.com/api/v1',
+  apiUrl: 'https://apiappassistance.compuelec.cl/api/v1',
 };

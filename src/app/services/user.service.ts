@@ -14,15 +14,15 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   // Método para consultar usuario por email
-  getUserStudentsByEmail(email: string): Observable<any> {
+  getUserByEmail(email: string): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.get(`${API_URL}/userStudent/email/${email}`, { headers });
+    return this.http.get(`${API_URL}/user/email/${email}`, { headers });
   }
 
   // Método para consultar usuario por _id
-  getUserStudentsById(userId: string): Observable<any> {
+  getUserById(userId: string): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.get(`${API_URL}/userStudent/${userId}`, { headers });
+    return this.http.get(`${API_URL}/user/${userId}`, { headers });
   }
 
   private getHeaders(): HttpHeaders {
