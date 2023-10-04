@@ -23,7 +23,7 @@ export class ProfilePage implements OnInit {
   constructor(private modalController: ModalController, private userService: UserService) {}
 
   buscarUsuarioPorEmail(email: string) {
-    this.userService.getUserStudentsByEmail(email).subscribe(
+    this.userService.getUserByEmail(email).subscribe(
       (data) => {
         this.userProfile = {
           name: data.name + ' ' + data.lastNameM + ' ' + data.lastNameF,

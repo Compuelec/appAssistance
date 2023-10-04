@@ -13,13 +13,8 @@ export class AuthService {
     this.baseUrl = environment.apiUrl;
   }
 
-  loginStudents(credentials: LoginData) {
-    const url = `${this.baseUrl}/login/students`;
-    return this.http.post(url, credentials);
-  }
-
-  loginTeachers(credentials: LoginData) {
-    const url = `${this.baseUrl}/login/teachers`;
+  login(credentials: LoginData) {
+    const url = `${this.baseUrl}/login`;
     return this.http.post(url, credentials);
   }
 

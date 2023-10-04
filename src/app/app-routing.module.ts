@@ -10,7 +10,7 @@ const routes: Routes = [
     },
     {
       path: 'login',
-      loadChildren: () => import('./modules/auth/loginStudents/loginStudents.module').then( m => m.LoginStudentsPageModule),
+      loadChildren: () => import('./modules/auth/loginStudents/login.module').then( m => m.LoginPageModule),
     },
     {
       path: 'home',
@@ -19,7 +19,8 @@ const routes: Routes = [
     {
       path: 'class-times',
       loadChildren: () => import('./modules/pages/class-times/class-times.module').then( m => m.ClassTimesPageModule)
-    },  {
+    },
+  {
     path: 'profile',
     loadChildren: () => import('./modules/pages/profile/profile.module').then( m => m.ProfilePageModule)
   },

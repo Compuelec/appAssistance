@@ -9,10 +9,10 @@ import { LoginData } from '../../../interfaces/login.interface';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './loginStudents.page.html',
-  styleUrls: ['./loginStudents.page.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginStudentsPage implements OnInit {
+export class LoginPage implements OnInit {
   email:string = "";
   password:string = "";
   messageError:string = "";
@@ -48,7 +48,7 @@ async login(email: string, password: string) {
 
   await loading.present();
 
-  this.subscription = this._authService.loginStudents(credentials).subscribe({
+  this.subscription = this._authService.login(credentials).subscribe({
     next: (response: any) => {
       if (response && response.token) {
         localStorage.setItem('token', response.token);
