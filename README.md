@@ -10,7 +10,7 @@ Este repositorio contiene el código fuente de una aplicación de control de asi
 
 1. **Version Node**:
    ```bash
-   $ v19.4.0
+   $ v18.18.0
    ```
 
 2. **Clona el repositorio**: 
