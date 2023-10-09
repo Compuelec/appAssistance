@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RecoryPasswordPage } from './recory-password.page';
+import { EnterClassPage } from './enter-class.page';
 
-describe('RecoryPasswordPage', () => {
-  let component: RecoryPasswordPage;
-  let fixture: ComponentFixture<RecoryPasswordPage>;
+describe('EnterClassPage', () => {
+  let component: EnterClassPage;
+  let fixture: ComponentFixture<EnterClassPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(RecoryPasswordPage);
+    fixture = TestBed.createComponent(EnterClassPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
