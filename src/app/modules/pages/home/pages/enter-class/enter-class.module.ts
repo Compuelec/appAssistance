@@ -6,8 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { EnterClassPageRoutingModule } from './enter-class-routing.module';
 
-import { EnterClassPage } from './enter-class.page';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +13,5 @@ import { EnterClassPage } from './enter-class.page';
     IonicModule,
     EnterClassPageRoutingModule
   ],
-  declarations: [EnterClassPage]
 })
 export class EnterClassPageModule {}
