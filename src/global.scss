@@ -28,3 +28,14 @@
 .margin-top-navbar {
   margin-top: 80px;
 }
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+body.scanner-active {
+  --background: transparent;
+  --ion-background-color: transparent;
+}
