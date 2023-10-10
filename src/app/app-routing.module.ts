@@ -22,13 +22,21 @@ const routes: Routes = [
     loadChildren: () => import('./modules/pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard],
   },
-  {
+{
     path: 'admin',
-    loadChildren: () => import('./modules/pages/admin/admin.module').then( m => m.AdminPageModule),
-    canActivate: [AuthGuard],
+    redirectTo: 'admin/home',
+    pathMatch: 'full', 
   },
-
-
+  // {
+  //   path: 'admin/home',
+  //   loadChildren: () => import('./modules/pages/admin/admin.module').then( m => m.AdminPageModule),
+  //   canActivate: [AuthGuard],
+  // },
+  // {
+  //   path: 'admin/start-class',
+  //   loadChildren: () => import('./modules/pages/admin/pages/start-class/start-class.module').then( m => m.StartClassPageModule),
+  //   canActivate: [AuthGuard],
+  // },
 ];
 
 @NgModule({

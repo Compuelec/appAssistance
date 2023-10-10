@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
-import { Platform } from '@ionic/angular';
 import jwt_decode from 'jwt-decode';
 
+import { AppService } from '../../../services/app.service';
 import { AuthService } from '../../../services/apiLogin.service';
 import { LoginData } from '../../../interfaces/login.interface';
 import { Role } from 'src/app/enums/rol.enum';
@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private loadingCtrl: LoadingController,
-    private platform: Platform,
+    private _appService: AppService,
     private _cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -109,7 +109,7 @@ export class LoginPage implements OnInit {
 }
 
   isMobileDevice() {
-    return this.platform.is('mobile');
+    return this._appService.isMobileDevice();
   }
 
 

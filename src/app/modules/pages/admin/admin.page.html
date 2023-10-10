@@ -1,13 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>admin</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <ion-content>
+  <div class="content-admin-page margin-top-navbar">
+    <app-side-menu class="content-menu"></app-side-menu>
+    <div class="content-page">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  </ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">admin</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
