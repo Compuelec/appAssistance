@@ -10,7 +10,7 @@
     Cursos
     </ion-item>
     
-    <ion-item href="/admin/start-class">
+    <ion-item href="/admin/start-class" *ngIf="role === EnumRole.TEACHER">
     <ion-icon slot="start" name="videocam"></ion-icon>
     Iniciar Clase
     </ion-item>

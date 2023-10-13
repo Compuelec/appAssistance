@@ -11,13 +11,18 @@ const routes: Routes = [
     component: AdminPage,
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
         path: 'home',
         component: HomePage
       },
       {
         path: 'start-class',
         component: StartClassPage
-      },  
+      },
     ],
   },
 ];

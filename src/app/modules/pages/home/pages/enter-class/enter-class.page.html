@@ -1,16 +1,5 @@
 <ion-content>
   <div class="margin-top-navbar">
-    <!-- Genera un Codigo QR -->
-    <ion-card class="ion-text-center">
-      <ion-card-content>
-        <qrcode 
-          [qrdata]="QrCode"
-          [width]="256"
-          [errorCorrectionLevel]="'M'">
-        </qrcode>    
-      </ion-card-content>
-    </ion-card>
-
     <ion-button
      expand="block"
      class="ion-margin"
@@ -19,7 +8,12 @@
     </ion-button>
 
     <ion-item *ngIf="scannedResult">
-      <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+      <!-- <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label> -->
+      <ion-label class="ion-text-wrap">Curso: {{course}}</ion-label>
+      <ion-label class="ion-text-wrap">Sala: {{room}}</ion-label>
+      <ion-button expand="full" (click)="enterClass()">Entrar</ion-button>
     </ion-item>
+
+  <!-- <ion-button expand="full" (click)="enterClass()">Entrar</ion-button> -->
   </div>
 </ion-content>

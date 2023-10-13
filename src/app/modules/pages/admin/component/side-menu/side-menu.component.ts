@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { Role } from 'src/app/enums/rol.enum';
 
 @Component({
   selector: 'app-side-menu',
@@ -7,6 +8,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./side-menu.component.scss']
 })
 export class SideMenuComponent {
+  EnumRole = Role;
   userId: string = '';
   role: string = '';
 

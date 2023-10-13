@@ -1,1 +1,36 @@
-<h1>INICIAR CLASES</h1>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cursos del Profesor(a):   {{ nombreTeacher }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto" *ngFor="let curso of cursos" size-md="3">
+        <ion-card>
+          <ion-img class="imagen-asignatura" src="{{ curso.imagen }}" alt="Imagen Asignatura"></ion-img>
+          <ion-card-header>
+            {{ curso.nombre }}
+          </ion-card-header>
+          <ion-card-content *ngIf="claseActiva && curso.mostrarContenido">
+            <p>Profesor: {{ curso.professor }}</p>
+            <p>Cantidad de Alumnos: {{ curso.cantidadAlumnos }}</p>
+            <p>Sala: {{ curso.room }}</p>
+            <qrcode 
+              [qrdata]="QrCode"
+              [width]="1024"
+              [elementType]="'img'"
+              [errorCorrectionLevel]="'L'">
+            </qrcode> 
+          </ion-card-content>
+          <ion-button expand="full" (click)="iniciarClase(curso)">
+            {{ curso.mostrarContenido ? 'Terminar Clase' : 'Iniciar Clase' }}
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
