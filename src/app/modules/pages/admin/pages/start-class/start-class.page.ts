@@ -13,7 +13,7 @@ export class StartClassPage implements OnInit {
   idTeacher: string = '';
   nombreTeacher: string = '';
   QrCode: string = '';
-  qr: [{ curse: string, room: string, teacherId: string, }] = [{ curse: '', room: '', teacherId: '' }];
+  qr: { curse: string, room: string, teacherId: string, } = { curse: '', room: '', teacherId: '' };
 
   token = localStorage.getItem('token');
 
@@ -61,13 +61,12 @@ export class StartClassPage implements OnInit {
       curso.mostrarContenido = true;
       this.claseActiva = true;
 
-      const qr = [
+      const qr = 
         {
-          curse: curso.nombre,
+          course: curso.nombre,
           room: curso.room,
           teacherId: this.idTeacher,
-        }
-      ];
+        };
 
       this.QrCode = JSON.stringify(qr);
       this.cursos.forEach(c => {

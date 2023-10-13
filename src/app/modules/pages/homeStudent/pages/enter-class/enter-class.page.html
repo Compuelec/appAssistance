@@ -1,0 +1,33 @@
+<div class="margin-top-navbar">
+  <ion-button
+    expand="block"
+    class="ion-margin"
+    (click)="startScan()">
+    Escanear Código QR
+  </ion-button>
+
+  <ion-list *ngIf="scannedResult">
+    <ion-item>
+      <ion-label class="ion-text-wrap">Curso: {{course}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Sala: {{room}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="full" (click)="enterClass()">Entrar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- <div>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Curso: {{course}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Sala: {{room}}</ion-label>
+    </ion-item>
+
+    <ion-button expand="full" (click)="enterClass()">Entrar</ion-button>
+  </div> -->
+
+</div>
+

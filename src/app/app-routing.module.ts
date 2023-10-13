@@ -14,8 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules/pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/pages/homeStudent/homeStudent.module').then( m => m.HomePageStudentModule),
   },
   {
     path: 'profile',

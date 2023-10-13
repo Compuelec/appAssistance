@@ -1,0 +1,42 @@
+<ion-content>
+  <div id="container" class="margin-top-navbar">
+    <ion-card>
+      <ion-card-header>
+        <strong>Bienvenido {{ studentLogged }}</strong>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <img alt="Silhouette of mountains" src="assets/img/home/principal-home.jpeg" />
+                <ion-card-header>
+                  <ion-card-title>Pagina de Inicio</ion-card-title>
+                  <ion-card-subtitle></ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content>
+                  Aqui tendras acceso a todos tus datos y a las acciones que puedes realizar en la aplicación.
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large" href="/home/enter-class">
+                <ion-icon name="school" slot="start"></ion-icon>
+                <ion-label slot="end">Ingresar a Clase</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button expand="full" shape="round" class="ion-text-wrap" size="large" href="/home/class-times">
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                <ion-label slot="end">Horario</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
