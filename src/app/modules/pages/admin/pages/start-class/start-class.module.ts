@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { QRCodeModule } from 'angularx-qrcode';
 
-import { EnterClassPageRoutingModule } from './enter-class-routing.module';
+import { StartClassPage } from './start-class.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnterClassPageRoutingModule
+    QRCodeModule,
   ],
+  declarations: [StartClassPage],
 })
-export class EnterClassPageModule {}
+export class StartClassPageModule {}

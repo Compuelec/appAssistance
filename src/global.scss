@@ -33,8 +33,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   height: 100vh; 
 }
+
+.content-admin-page {
+  display: flex;
+  width: 100%;
+  .content-menu {
+    width: 450px;
+    height: 100vh;
+    padding: 5px;
+  }
+  .content-page {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
 body.scanner-active {
   --background: transparent;
   --ion-background-color: transparent;
