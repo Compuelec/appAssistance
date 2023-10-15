@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Administración</ion-title>
+    <ion-buttons slot="end">
+      <ion-label>Usuario: {{logged}}</ion-label>
+      <ion-button (click)="logoutUser()">
+        <ion-avatar slot="start">
+          <img src="assets/img/navbar/user.png" alt="Avatar del usuario">
+        </ion-avatar>
+        Cerrar Sesión
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
