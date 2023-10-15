@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/enums/rol.enum';
+import { AppService } from 'src/app/services/app.service';
+
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -29,6 +31,9 @@ export class StartClassPage implements OnInit {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 10,
+      horarioIcicial: '12:00',
+      horarioFinal: '14:00',
+      dias: ['Lunes', 'Miercoles', 'Viernes', 'Sabado'],
     },
     {
       id: 2,
@@ -39,10 +44,13 @@ export class StartClassPage implements OnInit {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 12,
+      horarioIcicial: '20:05',
+      horarioFinal: '22:05',
+      dias: ['Martes', 'Jueves', 'Sabado'],
     }
   ];
 
-  constructor() { }
+  constructor(private _appService: AppService) { }
 
   ngOnInit() {
     if (this.token !== null) {
@@ -76,4 +84,17 @@ export class StartClassPage implements OnInit {
       });
     }
   }
+
+  getDiaActual() {
+    return this._appService.diaActual();
+  }
+
+  getFechaActual() {
+    return this._appService.fechaActual();
+  }
+
+  getHoraActual() {
+    return this._appService.horaActual();
+  }
+
 }
