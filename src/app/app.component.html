@@ -1,13 +1,3 @@
-<div *ngIf="validToken">
-  <app-navbar></app-navbar>
-  <ion-app>
-    <ion-router-outlet></ion-router-outlet>
-  </ion-app>
-  <app-footer></app-footer>
-</div>
-
-<div *ngIf="!validToken">
-  <ion-app>
-   <ion-router-outlet></ion-router-outlet>
-  </ion-app>
-</div>
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>

@@ -1,41 +1,36 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './modules/auth/auth.guard';
+import { AuthGuard } from './auth/auth.guard';
+import { Error404PageComponent } from './shared/error404-page/error404-page.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'student',
+    loadChildren: () => import('./student/student.module').then( m => m.StudentModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '404',
+    component: Error404PageComponent,
+  },
+  {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./modules/auth/login/login.module').then( m => m.LoginPageModule),
+    path: '**',
+    redirectTo: '404',
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./modules/pages/homeStudent/homeStudent.module').then( m => m.HomePageStudentModule),
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./modules/pages/profile/profile.module').then( m => m.ProfilePageModule),
-    canActivate: [AuthGuard],
-  },
-{
-    path: 'admin',
-    redirectTo: 'admin/home',
-    pathMatch: 'full', 
-  },
-  // {
-  //   path: 'admin/home',
-  //   loadChildren: () => import('./modules/pages/admin/admin.module').then( m => m.AdminPageModule),
-  //   canActivate: [AuthGuard],
-  // },
-  // {
-  //   path: 'admin/start-class',
-  //   loadChildren: () => import('./modules/pages/admin/pages/start-class/start-class.module').then( m => m.StartClassPageModule),
-  //   canActivate: [AuthGuard],
-  // },
 ];
 
 @NgModule({

@@ -21,13 +21,18 @@ export class AppService {
     return fechaActual;
   }
 
-  horaActual() {
-    const fecha = new Date();
-    const hora = fecha.getHours();
-    const minutos = fecha.getMinutes();
-    const horaActual = `${hora}:${minutos}`;
-    return horaActual;
-  }
+horaActual() {
+  const fecha = new Date();
+  const hora = fecha.getHours();
+  const minutos = fecha.getMinutes();
+
+  const horaFormateada = hora.toString().padStart(2, '0');
+  const minutosFormateados = minutos.toString().padStart(2, '0');
+
+  const horaActual = `${horaFormateada}:${minutosFormateados}`;
+  return horaActual;
+}
+
 
   diaActual() {
     const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
