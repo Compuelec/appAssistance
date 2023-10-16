@@ -15,12 +15,13 @@
     Iniciar Clase
     </ion-item>
 
-    <ion-item href="/admin/add-profesor">
+    <ion-item href="/admin/add-user" *ngIf="role === 'admin'">
     <ion-icon slot="start" name="person-add"></ion-icon>
-    Agregar Profesor
+    Agregar Usuarios
     </ion-item>
 
-    <ion-item href="/admin/add-studiante" *ngIf="role === 'admin' || role === 'teacher'">
+
+    <ion-item href="/admin/add-student" *ngIf="role === 'teacher'">
     <ion-icon slot="start" name="person-add"></ion-icon>
     Agregar Estudiante
     </ion-item>

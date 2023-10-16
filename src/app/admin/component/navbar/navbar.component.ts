@@ -28,7 +28,7 @@ export class NavbarComponent {
       this.role = decoded['role'];
     }
     this.isMobile = this.isMobileDevice();
-    this._cdr.detectChanges();
+     this._cdr.markForCheck();
   }
 
   logoutUser() {
