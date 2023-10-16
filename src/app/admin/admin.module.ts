@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { QRCodeModule } from 'angularx-qrcode';
 
@@ -10,15 +10,24 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
 import { HomePage } from './pages/home/home.page';
 import { StartClassPage } from './pages/start-class/start-class.page';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 
 @NgModule({
+  declarations: [
+    LayoutPageComponent,
+    NavbarComponent,
+    SideMenuComponent,
+    HomePage,
+    StartClassPage,
+    AddUserComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     QRCodeModule,
     AdminPageRoutingModule,
   ],
-  declarations: [LayoutPageComponent, NavbarComponent, SideMenuComponent, HomePage, StartClassPage],
 })
 export class AdminPageModule {}
