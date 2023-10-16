@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <h1 class="text-center">Agregar Estudiantes</h1>
+    <h1 class="text-center">Agregar {{ tipoUser }}</h1>
     <hr>
     <button class="btn btn-primary mb-2"
      data-toggle="tooltip"
@@ -41,7 +41,7 @@
             <i class="fas fa-edit"></i>
           </button>
 
-          <button class="btn btn-danger mx-2" *ngIf="user.role === roleEnum.ADMIN " 
+          <button class="btn btn-danger mx-2" *ngIf="role === roleEnum.ADMIN " 
             data-toggle="tooltip"
             data-placement="top"
             title="Eliminar">
@@ -102,6 +102,14 @@
             <div *ngIf="formulario.get('email')!.hasError('required')" class="text-danger">
             * El email es obligatorio.
             </div>
+        </div>
+        <div class="form-group mb-3" *ngIf="role === roleEnum.ADMIN">
+          <label for="role">Rol</label>
+          <select class="form-control" id="role" formControlName="role" [(ngModel)]="selectedRole">
+            <option [value]="roleEnum.ADMIN">Admin</option>
+            <option [value]="roleEnum.STUDENT">Estudiante</option>
+            <option [value]="roleEnum.TEACHER">Profesor</option>
+          </select>
         </div>
         <button class="btn btn-primary" (click)="saveUser()">Agregar Usuario</button>
      </form>

@@ -22,6 +22,10 @@ export class AddUserComponent implements OnInit {
 
   roleEnum = Role;
 
+  tipoUser = 'Estudiante';
+
+  selectedRole: Role = Role.TEACHER;
+
   role: string = '';
 
   token = localStorage.getItem('token');
@@ -38,14 +42,22 @@ export class AddUserComponent implements OnInit {
       lastNameM: new FormControl('', [Validators.required]),
       lastNameF: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      // Agrega más campos y validadores según sea necesario
+      role: new FormControl(''),
     });
+
+    if (this.role === Role.ADMIN) {
+      this.formulario.addControl('adminOnlyField', new FormControl('', [Validators.required]));
+    }
+
   }
 
   ngOnInit(): void {
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.role = decoded['role'];
+    }
+    if (this.role === Role.ADMIN) {
+      this.tipoUser = 'Usuario';
     }
 
     this.getUsers();
@@ -80,17 +92,18 @@ export class AddUserComponent implements OnInit {
 
   saveUser() {
     if (this.formulario.valid) {
-      // Los datos del formulario son válidos, puedes enviarlos
-      const role = this.roleEnum.STUDENT;
+
       const password = '123456789';
       const datosUsuario = this.formulario.value;
 
-      // Agregar el rol y la contraseña a los datos del usuario
-      datosUsuario.role = role;
+      if (this.role !== Role.ADMIN) {
+       const role = this.roleEnum.STUDENT;
+       datosUsuario.role = role;
+      }
+      
       datosUsuario.password = password;
 
-      // Ahora puedes enviar los datos con el rol y la contraseña
-      // console.log(datosUsuario);
+      console.log(datosUsuario);
 
       this.subscription = this.userService.postUser(datosUsuario).subscribe({
         next: (user: UserInterface) => {

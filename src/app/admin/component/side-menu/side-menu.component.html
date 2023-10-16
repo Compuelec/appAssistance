@@ -20,12 +20,8 @@
     Agregar Usuarios
     </ion-item>
 
-    <ion-item href="/admin/add-teacher" *ngIf="role === 'admin'">
-    <ion-icon slot="start" name="person-add"></ion-icon>
-    Agregar Profesor
-    </ion-item>
 
-    <ion-item href="/admin/add-student" *ngIf="role === 'admin' || role === 'teacher'">
+    <ion-item href="/admin/add-student" *ngIf="role === 'teacher'">
     <ion-icon slot="start" name="person-add"></ion-icon>
     Agregar Estudiante
     </ion-item>
