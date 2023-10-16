@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 
 import { UserService } from '../../../services/user.service';
 import { UserInterface } from '../../../interfaces/user.interface';
 import { Role } from '../../../enums/rol.enum';
 import { AppService } from '../../../services/app.service';
+import { AlertService } from '../../../services/alert.service';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -34,7 +34,7 @@ export class AddUserComponent implements OnInit {
 
   private subscription: Subscription | undefined;
 
-  constructor(private userService: UserService, private _appService: AppService) {
+  constructor(private userService: UserService, private _appService: AppService, private _alertService: AlertService) {
     this.formulario = new FormGroup({
       rut: new FormControl('', [Validators.required, this.validarRut.bind(this)]),
       username: new FormControl('', [Validators.required]),
@@ -79,9 +79,6 @@ export class AddUserComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
-      },
-      complete: () => {
-        console.log('complete');
       }
     });
   }
@@ -112,11 +109,11 @@ export class AddUserComponent implements OnInit {
         },
         error: (error: any) => {
           if (error.error.message === 'Rut is already in use') {
-            this.mostrarErrorAlert('El RUT ya está en uso');
+            this._alertService.showErrorAlert('El RUT ya está en uso');
           }
 
           if (error.error.message === 'E-mail is already in use') {
-            this.mostrarErrorAlert('El correo ya está en uso');
+            this._alertService.showErrorAlert('El correo ya está en uso');
           }
           console.log(error);
         },
@@ -125,7 +122,26 @@ export class AddUserComponent implements OnInit {
         }
       });
 
+    } else {
+      this.formulario.markAllAsTouched();
+      this._alertService.showErrorAlert('Debe completar todos los campos');
     }
+  }
+
+  deleteUser(user: UserInterface) {
+    this._alertService.showDeleteUser(user.name, (res) => {
+      if (res) {
+        this.subscription = this.userService.deleteUser(user._id).subscribe({
+          next: (user: UserInterface) => {
+            this._alertService.showExitoAlert(user.name);
+            this.getUsers();
+          },
+          error: (error: any) => {
+            console.log(error);
+          }
+        });
+      }
+    });
   }
 
   validarRut(control: AbstractControl): ValidationErrors | null {
@@ -136,16 +152,4 @@ export class AddUserComponent implements OnInit {
       return { rutInvalido: true };
     }
   }
-
-  mostrarErrorAlert(mensaje: string) {
-    Swal.fire({
-      title: 'Mensaje de alerta',
-      text: mensaje,
-      icon: 'error',
-      customClass: {
-        container: 'custom-swal-container custom-swal-center',
-      },
-    });
-  }
-
 }

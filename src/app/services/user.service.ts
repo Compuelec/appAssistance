@@ -24,6 +24,24 @@ export class UserService {
     );
   }
 
+  // Método para actualizar usuario
+  updateUser(body: UserInterface): Observable<UserInterface> {
+    const url = `${API_URL}/user/update`;
+    const headers = this.getHeaders();
+
+    return this.http.put(url, body, { headers }).pipe(
+      map((response) => response as UserInterface)
+    );
+  }
+
+  // Método para eliminar usuario
+  deleteUser(userId: string): Observable<any> {
+    const url = `${API_URL}/user/delete/${userId}`;
+    const headers = this.getHeaders();
+
+    return this.http.delete(url, { headers });
+  }
+
   // Método para consultar todos los usuarios
   getUsers(): Observable<UserInterface[]> {
     const headers = this.getHeaders();
