@@ -1,10 +1,3 @@
-.custom-swal-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+@import 'src/theme/variables.scss';
 
-::ng-deep body.swal2-height-auto {
-  height: inherit !important;
-}
+@include alertMessage;

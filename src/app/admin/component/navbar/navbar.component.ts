@@ -9,7 +9,7 @@ import { AppService } from '../../../services/app.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   logged: string = '';
   email: string = '';
   role: string = '';
@@ -17,9 +17,7 @@ export class NavbarComponent {
   token = localStorage.getItem('token');
   isMobile: boolean = false;
 
-  constructor(private _cdr: ChangeDetectorRef, private router: Router, private _appService: AppService) { }
-
-  ngOnInit() {
+  constructor(private _cdr: ChangeDetectorRef, private router: Router, private _appService: AppService) {
 
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
@@ -27,8 +25,12 @@ export class NavbarComponent {
       this.email = decoded['email'];
       this.role = decoded['role'];
     }
+
+ }
+
+  ngOnInit() {
     this.isMobile = this.isMobileDevice();
-     this._cdr.markForCheck();
+    this._cdr.detectChanges();    
   }
 
   logoutUser() {
