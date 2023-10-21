@@ -17,20 +17,20 @@ export class NavbarComponent implements OnInit {
   token = localStorage.getItem('token');
   isMobile: boolean = false;
 
-  constructor(private _cdr: ChangeDetectorRef, private router: Router, private _appService: AppService) {
+  constructor(private _cdr: ChangeDetectorRef, private router: Router, private _appService: AppService) {}
 
+  ngOnInit() {
+    this.isMobile = this.isMobileDevice();
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.logged = decoded['username'];
       this.email = decoded['email'];
       this.role = decoded['role'];
     }
+  }
 
- }
-
-  ngOnInit() {
-    this.isMobile = this.isMobileDevice();
-    this._cdr.detectChanges();    
+  ngAfterViewInit() {
+    this._cdr.detectChanges();
   }
 
   logoutUser() {
