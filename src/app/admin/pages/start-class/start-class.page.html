@@ -7,7 +7,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <div *ngFor="let curso of cursos" >
+      <div class="container-class" *ngFor="let curso of cursos" >
         <div *ngFor="let dia of curso.dias" size-md="12">
           <ion-col size="auto" size-md="3" *ngIf="getDiaActual() === dia">
             <ion-card>
