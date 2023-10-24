@@ -7,6 +7,7 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import jwt_decode from 'jwt-decode';
 
 import { ClassEntryService } from 'src/app/services/classEntry.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 @Component({
   selector: 'app-enter-class',
   templateUrl: './enter-class.page.html',
@@ -18,11 +19,11 @@ export class EnterClassPage implements OnInit, OnDestroy {
   idStudent: string = '';
 
   idTeacher: string = '';
-  room: string = '';
-  course: string = '';
+  // room: string = '';
+  // course: string = '';
 
-  // course = "Aplicaciones Web";
-  // room = "Sala 25";
+  course = "Aplicaciones Web";
+  room = "Sala 25";
 
   token = localStorage.getItem('token');
 
@@ -30,6 +31,7 @@ export class EnterClassPage implements OnInit, OnDestroy {
 
   constructor( 
     private _classEntryService: ClassEntryService,
+    private _notificationsService: NotificationsService,
     private router: Router,
     private loadingCtrl: LoadingController,
     private _cdr: ChangeDetectorRef,
@@ -118,19 +120,19 @@ export class EnterClassPage implements OnInit, OnDestroy {
 
     const body = {
       studentId: this.idStudent,
-      course: this.course,
-      room: this.room,
-      teacherId: this.idTeacher,
+      // course: this.course,
+      // room: this.room,
+      // teacherId: this.idTeacher,
 
-      // course: "Aplicaciones Web",
-      // room: "Sala 25",
-      // teacherId: "_c737e838-cf32-44d2-b4e4-59b7d292ca1"
+      course: "Aplicaciones Web",
+      room: "Sala 25",
+      teacherId: "_c737e838-cf32-44d2-b4e4-59b7d292ca1"
     };
 
     this.subscription = this._classEntryService.postClassEntry(body).subscribe({
       next: (response: any) => {
         loading.dismiss();
-        this.router.navigate(['/home']);
+        this.router.navigate(['student/home']);
       },
       error: (error: any) => {
         if (error.error.message === 'The student has already been registered in this class') {
@@ -139,6 +141,10 @@ export class EnterClassPage implements OnInit, OnDestroy {
         }
       },
       complete: () => {
+        this._notificationsService.sendNotificationsEnterRoom({
+          room: this.room,
+          idUser: this.idStudent,
+        });
         console.log('Completado');
       }
     });

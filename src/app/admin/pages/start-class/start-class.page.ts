@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/enums/rol.enum';
 import { AppService } from 'src/app/services/app.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 import jwt_decode from 'jwt-decode';
 
@@ -31,8 +32,8 @@ export class StartClassPage implements OnInit {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 10,
-      horarioIcicial: '00:00',
-      horarioFinal: '02:00',
+      horarioIcicial: '13:00',
+      horarioFinal: '15:00',
       dias: ['Lunes', 'Miercoles', 'Viernes', 'Sabado', 'Domingo'],
     },
     {
@@ -44,13 +45,13 @@ export class StartClassPage implements OnInit {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 12,
-      horarioIcicial: '00:05',
-      horarioFinal: '03:05',
-      dias: ['Martes', 'Jueves', 'Sabado', 'Domingo'],
+      horarioIcicial: '13:00',
+      horarioFinal: '15:00',
+      dias: ['Lunes','Martes', 'Jueves', 'Sabado', 'Domingo'],
     }
   ];
 
-  constructor(private _appService: AppService) { }
+  constructor(private _appService: AppService, private _notificationsService: NotificationsService) { }
 
   ngOnInit() {
     if (this.token !== null) {
@@ -59,6 +60,10 @@ export class StartClassPage implements OnInit {
       this.nombreTeacher = decoded['username'];
       this.role = decoded['role'];
     }
+
+    this._notificationsService.notificationsEnterRoom$.subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
   iniciarClase(curso: any) {
