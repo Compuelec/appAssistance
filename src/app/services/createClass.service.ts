@@ -10,13 +10,11 @@ const TOKEN_KEY = localStorage.getItem('token');
 @Injectable({
   providedIn: 'root'
 })
-export class ClassEntryService {
+export class CreateClassService {
   constructor(private http: HttpClient) {}
-
-
-  // Método para ingresar en una clase
-  postClassEntry(body: any): Observable<any> {
-    const url = `${API_URL}/class-entry/`;
+  // Método para crear en una clase
+  postCreateClass(body: any): Observable<any> {
+    const url = `${API_URL}/create-class/`;
     const headers = this.getHeaders();
     return this.http.post(url, body, { headers });
   }

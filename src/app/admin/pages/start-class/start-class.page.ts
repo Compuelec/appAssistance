@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/enums/rol.enum';
 import { AppService } from 'src/app/services/app.service';
+import { AlertService } from 'src/app/services/alert.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 
 import jwt_decode from 'jwt-decode';
+import { CreateClassService } from 'src/app/services/createClass.service';
 
 @Component({
   selector: 'app-start-class',
@@ -16,15 +18,16 @@ export class StartClassPage implements OnInit {
   idTeacher: string = '';
   nombreTeacher: string = '';
   QrCode: string = '';
-  qr: { curse: string, room: string, teacherId: string, } = { curse: '', room: '', teacherId: '' };
+  qr: { classId: string, } = { classId: '' };
 
   token = localStorage.getItem('token');
 
   claseActiva: boolean = false;
+  claseActivaId: string = '';
 
   cursos = [
     {
-      id: 1,
+      id: '1',
       nombre: 'Aplicaciones Web',
       descripcion: 'Curso de aplicaciones web',
       imagen: 'https://www.semantic-systems.com/semantic-noticias/wp-content/uploads/2023/05/Bedigital-2023.jpg',
@@ -32,12 +35,12 @@ export class StartClassPage implements OnInit {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 10,
-      horarioIcicial: '13:00',
-      horarioFinal: '15:00',
-      dias: ['Lunes', 'Miercoles', 'Viernes', 'Sabado', 'Domingo'],
+      horarioIcicial: '12:00',
+      horarioFinal: '13:00',
+      dias: ['Lunes','Martes', 'Miercoles', 'Viernes', 'Sabado', 'Domingo'],
     },
     {
-      id: 2,
+      id: '2',
       nombre: 'Aplicaciones Moviles',
       descricion: 'Curso de aplicaciones moviles',
       imagen: 'https://www.semantic-systems.com/semantic-noticias/wp-content/uploads/2023/05/WBN-F%C3%A1brica-Digitalizada-11.jpg',
@@ -51,7 +54,7 @@ export class StartClassPage implements OnInit {
     }
   ];
 
-  constructor(private _appService: AppService, private _notificationsService: NotificationsService) { }
+  constructor(private _appService: AppService, private _notificationsService: NotificationsService, private _createClassService: CreateClassService, private _alertService: AlertService) { }
 
   ngOnInit() {
     if (this.token !== null) {
@@ -61,33 +64,69 @@ export class StartClassPage implements OnInit {
       this.role = decoded['role'];
     }
 
+    if(localStorage.getItem('classInCourse')) {
+      const inCourse = localStorage.getItem('classInCourse') || '';
+      const classInCourse = JSON.parse(inCourse);
+      this.claseActivaId = classInCourse.idCourse;
+      const idClass = classInCourse._id;
+      const qr = 
+            {
+              classId: idClass,
+            };
+      this.QrCode = JSON.stringify(qr);
+    }
+
     this._notificationsService.notificationsEnterRoom$.subscribe((data: any) => {
       console.log(data);
     });
   }
 
-  iniciarClase(curso: any) {
-    if (curso.mostrarContenido) {
-      curso.mostrarContenido = false;
-      this.claseActiva = false;
-    } else {
-      curso.mostrarContenido = true;
-      this.claseActiva = true;
+  async iniciarClase(curso: any) {
 
-      const qr = 
-        {
-          course: curso.nombre,
-          room: curso.room,
-          teacherId: this.idTeacher,
-        };
+    if(!localStorage.getItem('classInCourse')) {
+      let idClass: string = '';
+      const enterClass = await this.createClass(this.idTeacher, curso.nombre, curso.room);
+      enterClass.subscribe((data: any) => {
+        idClass = data._id;
 
-      this.QrCode = JSON.stringify(qr);
-      this.cursos.forEach(c => {
-        if (c !== curso) {
-          c.mostrarContenido = false;
+        const dataToClass = { _id: idClass, name: curso.nombre, room: curso.room, idCourse: curso.id };
+        const dataAsString = JSON.stringify(dataToClass);
+        localStorage.setItem('classInCourse', dataAsString);
+
+        if (curso.mostrarContenido) {
+          curso.mostrarContenido = false;
+          this.claseActiva = false;
+        } else {
+          curso.mostrarContenido = true;
+          this.claseActiva = true;
+
+          const qr = 
+            {
+              classId: idClass,
+            };
+
+          this.QrCode = JSON.stringify(qr);
+          this.cursos.forEach(c => {
+            if (c !== curso) {
+              c.mostrarContenido = false;
+            }
+          });
         }
       });
+    } else {
+      this._alertService.showErrorAlert('Ya tienes una clase activa');
     }
+  }
+
+  finalizarClase(curso: any) {}
+
+  createClass(idTeacher: string, course: string, room: string) {
+    const body = {
+      idTeacher,
+      course,
+      room,
+    };
+    return this._createClassService.postCreateClass(body);
   }
 
   getDiaActual() {

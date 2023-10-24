@@ -1,5 +1,9 @@
+@import 'src/theme/variables.scss';
+
+@include alertMessage;
+
 .container-class {
-  width: 25%;
+  max-width: 25%;
 }
 
 .imagen-asignatura {

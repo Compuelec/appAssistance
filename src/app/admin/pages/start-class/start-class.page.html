@@ -15,7 +15,7 @@
               <ion-card-header>
                 {{ curso.nombre }}
               </ion-card-header>
-              <ion-card-content *ngIf="claseActiva && curso.mostrarContenido">
+              <ion-card-content *ngIf="claseActiva && curso.mostrarContenido || curso.id === claseActivaId">
                 <p>Profesor: {{ curso.professor }}</p>
                 <p>Cantidad de Alumnos: {{ curso.cantidadAlumnos }}</p>
                 <p>Sala: {{ curso.room }}</p>
@@ -28,10 +28,13 @@
               </ion-card-content>
 
               <div *ngIf="getHoraActual() >= curso.horarioIcicial && getHoraActual() <= curso.horarioFinal ">
-                <ion-button expand="full" (click)="iniciarClase(curso)">
-                  {{ curso.mostrarContenido ? 'Terminar Clase' : 'Iniciar Clase' }}
+                <ion-button expand="full" (click)="iniciarClase(curso)" *ngIf="curso.id !== claseActivaId">
+                  Iniciar Clase
                 </ion-button>
               </div>
+              <ion-button expand="full" (click)="finalizarClase(curso)" *ngIf="curso.id === claseActivaId">
+                Finalizar Clase
+              </ion-button>
             </ion-card>
           </ion-col>
         </div>
