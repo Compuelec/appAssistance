@@ -21,6 +21,20 @@ export class ClassEntryService {
     return this.http.post(url, body, { headers });
   }
 
+  // Método para obtener los datos de una clase
+  getClassData(idClass: string): Observable<any> {
+    const url = `${API_URL}/class-entry/${idClass}`;
+    const headers = this.getHeaders();
+    return this.http.get(url, { headers });
+  }
+
+  // Método para obtener los alumnos que asisten a una clase
+  getStudents(idClass: string): Observable<any> {
+    const url = `${API_URL}/class-entry/class/${idClass}`;
+    const headers = this.getHeaders();
+    return this.http.get(url, { headers });
+  }
+
   private getHeaders(): HttpHeaders {
     const token = TOKEN_KEY;
     const headers = new HttpHeaders({

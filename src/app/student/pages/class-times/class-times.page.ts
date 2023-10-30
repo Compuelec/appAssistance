@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-class-times',
@@ -7,17 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassTimesPage implements OnInit {
   cards: { [key: string]: boolean }  = {
-    lunes: false,
-    martes: false,
-    miercoles: false,
-    jueves: false,
-    viernes: false,
-    sabado: false,
+    Lunes: false,
+    Martes: false,
+    Miercoles: false,
+    Jueves: false,
+    Viernes: false,
+    Sabado: false,
   };
 
-  constructor() { }
+  constructor(private _appSrvice: AppService) { }
 
   ngOnInit() {
+    this.toggleCard(this._appSrvice.diaActual());
   }
 
   toggleCard(day: string) {
@@ -28,5 +30,7 @@ export class ClassTimesPage implements OnInit {
       console.error(`El día '${day}' no es válido.`);
     }
   }
+
+  
 
 }

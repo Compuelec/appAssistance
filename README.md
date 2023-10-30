@@ -43,7 +43,7 @@ Este proyecto se conecta a una API que gestiona los datos de asistencia. Puedes 
 
 ## Version Node
 ```bash
-$ v19.4.0
+$ node v18.18.0
 ```
 
 ## Installation
@@ -68,9 +68,26 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+
+## Users created by default
+
+```bash
+# Admin user
+email: admin@gmail.com
+password: 123456789
+
+# Student user
+email: estudiante@gmail.com
+password: 123456789
+
+# Teacher user
+email: profesor@gmail.com
+password: 123456789
+```
+
 ## Demo de API y documentación
 
-<a href="https://nest-app-assistance-postgres.onrender.com/doc" target="_blank">LINK</a>
+<a href="https://apiappassistance.compuelec.cl/doc" target="_blank">LINK</a>
 
 ## Apk de prueba
 [Descarga la apk desde drive](https://drive.google.com/file/d/101y8uTBcNi-88XoObiHFkitz5T54GUtB/view?usp=sharing)

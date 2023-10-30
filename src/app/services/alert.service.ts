@@ -34,10 +34,10 @@ export class AlertService {
     });
   }
 
-  showExitoAlert(nombre: string) {
+  showExitoAlert(mensaje: string) {
     Swal.fire({
       title: 'Éxito',
-      text: `El usuario ${nombre} fue eliminado con éxito.`,
+      text: mensaje,
       icon: 'success',
       customClass: {
         container: 'custom-swal-container custom-swal-center',
