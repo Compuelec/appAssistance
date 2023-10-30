@@ -36,6 +36,7 @@
     "angularx-qrcode": "^16.0.2",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
+    "cordova-plugin-file": "^8.0.0",
     "cordova-plugin-media-capture": "^5.0.0",
     "ionicons": "^7.1.2",
     "jwt-decode": "^3.1.2",
