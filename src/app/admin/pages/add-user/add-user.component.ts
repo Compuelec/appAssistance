@@ -133,7 +133,7 @@ export class AddUserComponent implements OnInit {
       if (res) {
         this.subscription = this.userService.deleteUser(user._id).subscribe({
           next: (user: UserInterface) => {
-            this._alertService.showExitoAlert(user.name);
+            this._alertService.showExitoAlert(`El usuario ${user.name} fue eliminado con éxito.`);
             this.getUsers();
           },
           error: (error: any) => {

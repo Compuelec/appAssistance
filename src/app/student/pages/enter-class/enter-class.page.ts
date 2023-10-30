@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,33 +8,28 @@ import jwt_decode from 'jwt-decode';
 
 import { ClassEntryService } from 'src/app/services/classEntry.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+
+declare var cordova: any;
+
 @Component({
   selector: 'app-enter-class',
   templateUrl: './enter-class.page.html',
   styleUrls: ['./enter-class.page.scss'],
 })
-export class EnterClassPage implements OnInit, OnDestroy {
-  permission = false;
+export class EnterClassPage {
   scannedResult: boolean = false;
   idStudent: string = '';
-
-  idTeacher: string = '';
-  // room: string = '';
-  // course: string = '';
-
-  course = "Aplicaciones Web";
-  room = "Sala 25";
-
+  classId: string = '';
+  room: string = '';
+  course: string = '';
   token = localStorage.getItem('token');
-
   private subscription: Subscription | undefined;
 
-  constructor( 
+  constructor(
     private _classEntryService: ClassEntryService,
     private _notificationsService: NotificationsService,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private _cdr: ChangeDetectorRef,
     private el: ElementRef,
   ) {}
 
@@ -48,13 +43,34 @@ export class EnterClassPage implements OnInit, OnDestroy {
       },
     });
   }
-  ngOnInit() {
+
+  async ngOnInit() {
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.idStudent = decoded['id'];
     }
-    
-     this._cdr.detectChanges();
+
+    if (this.isMobileDevice()) {
+      this.requestCameraPermission();
+    }
+  }
+
+  isMobileDevice() {
+    return navigator.userAgent.match(/Android|iPhone|iPad|iPod/i) !== null;
+  }
+
+  async requestCameraPermission() {
+    document.addEventListener('deviceready', () => {
+      cordova.plugins.permissions.requestPermission(cordova.plugins.permissions.CAMERA, function (status: { hasPermission: any; }) {
+        if (status.hasPermission) {
+          // El usuario concedió permiso para la cámara.
+        } else {
+          // El usuario rechazó el permiso para la cámara.
+        }
+      }, function () {
+        // Error al solicitar el permiso.
+      });
+    });
   }
 
   async checkPermission() {
@@ -84,7 +100,7 @@ export class EnterClassPage implements OnInit, OnDestroy {
         const resultScan = JSON.parse(result.content);
         this.room = resultScan.room;
         this.course = resultScan.course;
-        this.idTeacher = resultScan.teacherId;
+        this.classId = resultScan.classId;
 
         this.scannedResult = true;
 
@@ -103,15 +119,7 @@ export class EnterClassPage implements OnInit, OnDestroy {
     document.querySelector('body')?.classList.remove('scanner-active');
   }
 
-  ngOnDestroy(): void {
-    this.stopScan();
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
   async enterClass() {
-
     const loading = await this.loadingCtrl.create({
       message: 'Registrando asistencia...',
     });
@@ -120,13 +128,8 @@ export class EnterClassPage implements OnInit, OnDestroy {
 
     const body = {
       studentId: this.idStudent,
-      // course: this.course,
-      // room: this.room,
-      // teacherId: this.idTeacher,
-
-      course: "Aplicaciones Web",
-      room: "Sala 25",
-      teacherId: "_c737e838-cf32-44d2-b4e4-59b7d292ca1"
+      classId: this.classId,
+      // classId: "_2d096b15-efa1-449c-a55c-94cd05e677b"
     };
 
     this.subscription = this._classEntryService.postClassEntry(body).subscribe({
@@ -144,10 +147,11 @@ export class EnterClassPage implements OnInit, OnDestroy {
         this._notificationsService.sendNotificationsEnterRoom({
           room: this.room,
           idUser: this.idStudent,
+          classId: this.classId,
+          // classId: "_2d096b15-efa1-449c-a55c-94cd05e677b"
         });
         console.log('Completado');
       }
     });
   }
-
 }

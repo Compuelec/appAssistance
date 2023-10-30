@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/v1', 
-  //apiUrl: 'https://apiappassistance.compuelec.cl/api/v1',
-  wsUrl: 'http://localhost:81',
+  //apiUrl: 'http://localhost:3000/api/v1',
+  //wsUrl: 'http://localhost:81',
+  apiUrl: 'https://apiappassistance.compuelec.cl/api/v1',
+  wsUrl: 'https://apiappassistancews.compuelec.cl:',
 
   TOKEN_KEY: localStorage.getItem('token'),
 };

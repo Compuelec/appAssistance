@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Cursos del Profesor(a):   {{ nombreTeacher }}  {{ getDiaActual() }} - {{ getHoraActual() }}</ion-title>
+    <ion-title>Cursos del Profesor(a):   {{ nombreTeacher }} </ion-title>
   </ion-toolbar>
+  <ion-label class="ion-text-center">
+    <h2> {{ getDiaActual() }}  {{ getFechaActual() }}</h2>
+    <h3> {{ getHoraActual() }} </h3>
+  </ion-label>
 </ion-header>
 
 <ion-content>
@@ -25,9 +29,20 @@
                   [elementType]="'img'"
                   [errorCorrectionLevel]="'L'">
                 </qrcode> 
+
+                <div class="content-students-in-class">
+
+                  <p class="label-in-class">Alumnos En Clase</p>
+                  <div class="students-in-class" *ngFor="let alumno of studentsInClass">
+                    <div class="online-dot"></div>
+                    <p>{{ alumno.student.name }} {{ alumno.student.lastNameM }} {{alumno.student.lastNameF }}</p>
+                  </div>
+
+                </div>
+
               </ion-card-content>
 
-              <div *ngIf="getHoraActual() >= curso.horarioIcicial && getHoraActual() <= curso.horarioFinal ">
+              <div *ngIf="getHoraActual() >= curso.horarioInicial && getHoraActual() <= curso.horarioFinal ">
                 <ion-button expand="full" (click)="iniciarClase(curso)" *ngIf="curso.id !== claseActivaId">
                   Iniciar Clase
                 </ion-button>

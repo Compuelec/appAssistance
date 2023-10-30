@@ -21,3 +21,24 @@ export interface AddUserInterface {
     password:   string;
     role:       string;
 }
+
+export interface StudentOnLineInterface {
+    _id:       string;
+    createdAt: Date;
+    student:   Student;
+    class:     Class;
+}
+
+export interface Class {
+    _id:     string;
+    course:  string;
+    room:    string;
+    teacher: Student;
+}
+
+export interface Student {
+    _id:       string;
+    name:      string;
+    lastNameM: string;
+    lastNameF: string;
+}
