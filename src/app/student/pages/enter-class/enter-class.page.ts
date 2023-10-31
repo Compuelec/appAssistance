@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
@@ -16,7 +16,7 @@ declare var cordova: any;
   templateUrl: './enter-class.page.html',
   styleUrls: ['./enter-class.page.scss'],
 })
-export class EnterClassPage {
+export class EnterClassPage implements OnInit {
   scannedResult: boolean = false;
   idStudent: string = '';
   classId: string = '';
@@ -36,9 +36,16 @@ export class EnterClassPage {
     private _cdr: ChangeDetectorRef
   ) {
     this.successSound = new Audio('assets/scan-success.mp3');
+
+  this.router.events.subscribe((event) => {
+    if (event instanceof NavigationStart) {
+      this.stopScan();
+    }
+  });
+
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.idStudent = decoded['id'];
@@ -47,11 +54,6 @@ export class EnterClassPage {
     if (this.isMobileDevice()) {
       this.requestCameraPermission();
     }
-  }
-
-  OnDestroy() {
-    this.stopScan();
-    this._cdr.detectChanges();
   }
 
   isMobileDevice() {

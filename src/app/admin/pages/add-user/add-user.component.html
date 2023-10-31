@@ -9,8 +9,6 @@
      Agregar
     </button>
 
-
-
   <table class="table table-striped bg-light" *ngIf="!agregarUser">
     <thead>
       <tr>
@@ -75,6 +73,11 @@
             <div *ngIf="formulario.get('username')!.hasError('required')" class="text-danger">
             * El nombre de usuario es obligatorio.
             </div>
+
+            <div *ngIf="formulario.get('username')!.hasError('minlength')" class="text-danger">
+             * El nombre de usuario debe tener al menos 4 caracteres.
+            </div>
+
         </div>
         <div class="form-group mb-3">
             <label for="name">Nombre</label>
@@ -82,6 +85,11 @@
             <div *ngIf="formulario.get('name')!.hasError('required')" class="text-danger">
             * El nombre es obligatorio.
             </div>
+
+            <div *ngIf="formulario.get('name')!.hasError('minlength')" class="text-danger">
+             * El nombre de debe tener al menos 4 caracteres.
+            </div>
+
         </div>
         <div class="form-group mb-3">
             <label for="lastNameM">Apellido Paterno</label>
@@ -89,6 +97,11 @@
             <div *ngIf="formulario.get('lastNameM')!.hasError('required')" class="text-danger">
             * El apellido paterno obligatorio.
             </div>
+
+            <div *ngIf="formulario.get('lastNameM')!.hasError('minlength')" class="text-danger">
+             * El apellido paterno debe tener al menos 4 caracteres.
+            </div>
+
         </div>
         <div class="form-group mb-3">
             <label for="lastNameF">Apellido Materno</label>
@@ -96,6 +109,11 @@
             <div *ngIf="formulario.get('lastNameF')!.hasError('required')" class="text-danger">
             * El apellido materno obligatorio.
             </div>
+
+            <div *ngIf="formulario.get('lastNameF')!.hasError('minlength')" class="text-danger">
+             * El apellido materno debe tener al menos 4 caracteres.
+            </div>
+
         </div>
         <div class="form-group mb-3">
             <label for="email">Correo Electrónico</label>
