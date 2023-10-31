@@ -1,0 +1,143 @@
+<div class="container mt-4">
+    <h1 class="text-center">Agregar {{ tipoUser }}</h1>
+    <hr>
+    <button class="btn btn-primary mb-2"
+     data-toggle="tooltip"
+     data-placement="top"
+     title="Agregar Estudiante"
+     (click)="agregarUsuario()">
+     Agregar
+    </button>
+
+  <table class="table table-striped bg-light" *ngIf="!agregarUser">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>
+          <img class="img-thumbnail" 
+           [src]="user.avatar || 'assets/img/navbar/user.png'"
+           alt="Avatar"
+           width="50"
+           height="50">
+        </td>
+        <td>{{ user.name }} {{ user.lastNameM }} {{ user.lastNameF }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button class="btn btn-primary mx-2"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Actualizar">
+            <i class="fas fa-edit"></i>
+          </button>
+
+          <button class="btn btn-danger mx-2" *ngIf="role === roleEnum.ADMIN " 
+            data-toggle="tooltip"
+            data-placement="top"
+            (click)="deleteUser(user)"
+            title="Eliminar">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<div *ngIf="agregarUser" class="mt-4">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <form [formGroup]="formulario">
+
+        <div class="form-group mb-3">
+            <label for="rut">RUT</label>
+            <input type="text" class="form-control" id="rut" placeholder="Rut" formControlName="rut">
+            <div *ngIf="formulario.get('rut')!.hasError('required')" class="text-danger">
+            * El RUT es obligatorio.
+            </div>
+            <div *ngIf="formulario.get('rut')!.hasError('rutInvalido')" class="text-danger">
+             * RUT inválido.
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="username">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" formControlName="username">
+            <div *ngIf="formulario.get('username')!.hasError('required')" class="text-danger">
+            * El nombre de usuario es obligatorio.
+            </div>
+
+            <div *ngIf="formulario.get('username')!.hasError('minlength')" class="text-danger">
+             * El nombre de usuario debe tener al menos 4 caracteres.
+            </div>
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Nombre" formControlName="name">
+            <div *ngIf="formulario.get('name')!.hasError('required')" class="text-danger">
+            * El nombre es obligatorio.
+            </div>
+
+            <div *ngIf="formulario.get('name')!.hasError('minlength')" class="text-danger">
+             * El nombre de debe tener al menos 4 caracteres.
+            </div>
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="lastNameM">Apellido Paterno</label>
+            <input type="text" class="form-control" id="lastNameM" placeholder="Apellido Paterno" formControlName="lastNameM">
+            <div *ngIf="formulario.get('lastNameM')!.hasError('required')" class="text-danger">
+            * El apellido paterno obligatorio.
+            </div>
+
+            <div *ngIf="formulario.get('lastNameM')!.hasError('minlength')" class="text-danger">
+             * El apellido paterno debe tener al menos 4 caracteres.
+            </div>
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="lastNameF">Apellido Materno</label>
+            <input type="text" class="form-control" id="lastNameF" placeholder="Apellido Materno" formControlName="lastNameF">
+            <div *ngIf="formulario.get('lastNameF')!.hasError('required')" class="text-danger">
+            * El apellido materno obligatorio.
+            </div>
+
+            <div *ngIf="formulario.get('lastNameF')!.hasError('minlength')" class="text-danger">
+             * El apellido materno debe tener al menos 4 caracteres.
+            </div>
+
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" formControlName="email">
+            <div *ngIf="formulario.get('email')!.hasError('required')" class="text-danger">
+            * El email es obligatorio.
+            </div>
+        </div>
+        <div class="form-group mb-3" *ngIf="role === roleEnum.ADMIN">
+          <label for="role">Rol</label>
+          <select class="form-control" id="role" formControlName="role" [(ngModel)]="selectedRole">
+            <option [value]="roleEnum.ADMIN">Admin</option>
+            <option [value]="roleEnum.STUDENT">Estudiante</option>
+            <option [value]="roleEnum.TEACHER">Profesor</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" (click)="saveUser()">Agregar Usuario</button>
+     </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>

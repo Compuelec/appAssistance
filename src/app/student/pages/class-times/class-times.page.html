@@ -1,0 +1,230 @@
+<div class="margin-top-navbar">
+  <!-- Lunes -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header (click)="toggleCard('Lunes')">
+          <ion-card-title>
+            <ion-label>Lunes</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Lunes']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Lunes']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Lunes']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!-- Martes -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header text-center (click)="toggleCard('Martes')">
+          <ion-card-title>
+            <ion-label>Martes</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Martes']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Martes']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Martes']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!-- Miércoles -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header text-center (click)="toggleCard('Miercoles')">
+          <ion-card-title>
+            <ion-label>Miércoles</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Miercoles']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Miercoles']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Miercoles']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!-- Jueves -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header text-center (click)="toggleCard('Jueves')">
+          <ion-card-title>
+            <ion-label>Jueves</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Jueves']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Jueves']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Jueves']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!-- Viernes -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header text-center (click)="toggleCard('Viernes')">
+          <ion-card-title>
+            <ion-label>Viernes</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Viernes']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Viernes']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Viernes']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <!-- Sábado -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-card-header text-center (click)="toggleCard('Sabado')">
+          <ion-card-title>
+            <ion-label>Sábado</ion-label>
+            <ion-icon name="chevron-down" class="icon-right" *ngIf="!cards['Sabado']"></ion-icon>
+            <ion-icon name="chevron-up" class="icon-right" *ngIf="cards['Sabado']"></ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngIf="cards['Sabado']">
+
+          <div class="container">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 1</h5>
+                <small>Horario: 9:00 AM - 10:30 AM</small><br>
+                <small>Profesor: Profesor 1</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 2</h5>
+                <small>Horario: 10:45 AM - 12:15 PM</small><br>
+                <small>Profesor: Profesor 2</small>
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Materia 3</h5>
+                <small>Horario: 1:30 PM - 3:00 PM</small><br>
+                <small>Profesor: Profesor 3</small>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</div>

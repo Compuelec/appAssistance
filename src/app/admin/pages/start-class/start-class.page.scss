@@ -1,0 +1,41 @@
+@import 'src/theme/variables.scss';
+
+@include alertMessage;
+
+.container-class {
+  max-width: 25%;
+  min-width: 350px;
+}
+
+.imagen-asignatura {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.qrcode canvas {
+  width: 100%;
+}
+
+.online-dot {
+  width: 12px;
+  height: 12px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.content-students-in-class {
+  display: block;
+  margin-top: 20px;
+  .label-in-class {
+    margin-bottom: 15px;
+    font-size: 17px;
+    text-align: center;
+  }
+}
+
+.students-in-class {
+  display: flex;
+  align-items: center;
+}

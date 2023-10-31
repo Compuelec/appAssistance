@@ -1,0 +1,25 @@
+.user-login {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+::ng-deep .content-login input {
+  padding-left: 10px!important;
+  border-radius: 8px!important;
+  margin-top: 7px;
+}
+
+::ng-deep .content-login ion-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-login {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}

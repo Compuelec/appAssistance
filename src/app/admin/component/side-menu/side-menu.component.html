@@ -1,0 +1,39 @@
+<ion-content> 
+<ion-list>
+    <ion-item href="/admin/home">
+    <ion-icon slot="start" name="home"></ion-icon>
+    Inicio
+    </ion-item>
+
+    <ion-item >
+    <ion-icon slot="start" name="book"></ion-icon>
+    Cursos
+    </ion-item>
+    
+    <ion-item href="/admin/start-class" *ngIf="role === EnumRole.TEACHER">
+    <ion-icon slot="start" name="videocam"></ion-icon>
+    Iniciar Clase
+    </ion-item>
+
+    <ion-item href="/admin/add-user" *ngIf="role === 'admin'">
+    <ion-icon slot="start" name="person-add"></ion-icon>
+    Agregar Usuarios
+    </ion-item>
+
+
+    <ion-item href="/admin/add-student" *ngIf="role === 'teacher'">
+    <ion-icon slot="start" name="person-add"></ion-icon>
+    Agregar Estudiante
+    </ion-item>
+
+    <ion-item routerDirection="root">
+    <ion-icon slot="start" name="person"></ion-icon>
+    Perfil
+    </ion-item>
+
+    <ion-item routerDirection="root">
+    <ion-icon slot="start" name="settings"></ion-icon>
+    Ajustes
+    </ion-item>
+    </ion-list>
+</ion-content>

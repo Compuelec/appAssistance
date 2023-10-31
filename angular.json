@@ -31,8 +31,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [ 
+                        "src/theme/variables.scss",
+                        "node_modules/bootstrap/scss/bootstrap.scss",
+                        "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+                        "src/global.scss"
+                      ],
+            "scripts": [ "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -44,8 +49,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "100kb"
                 }
               ],
               "fileReplacements": [
@@ -111,8 +116,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+                        "src/theme/variables.scss",
+                        "src/global.scss",
+                        "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+                        "node_modules/bootstrap/scss/bootstrap.scss"
+                      ],
+            "scripts": [ "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "ci": {

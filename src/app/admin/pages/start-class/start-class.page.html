@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cursos del Profesor(a):   {{ nombreTeacher }} </ion-title>
+  </ion-toolbar>
+  <ion-label class="ion-text-center">
+    <h2> {{ getDiaActual() }}  {{ getFechaActual() }}</h2>
+    <h3> {{ getHoraActual() }} </h3>
+  </ion-label>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <div class="container-class" *ngFor="let curso of cursos" >
+        <div *ngFor="let dia of curso.dias" size-md="12">
+          <ion-col size="auto" size-md="3" *ngIf="getDiaActual() === dia">
+            <ion-card>
+              <ion-img class="imagen-asignatura" src="{{ curso.imagen }}" alt="Imagen Asignatura"></ion-img>
+              <ion-card-header>
+                {{ curso.nombre }}
+              </ion-card-header>
+              <ion-card-content *ngIf="claseActiva && curso.mostrarContenido || curso.id === claseActivaId">
+                <p>Profesor: {{ curso.professor }}</p>
+                <p>Cantidad de Alumnos: {{ curso.cantidadAlumnos }}</p>
+                <p>Sala: {{ curso.room }}</p>
+                <qrcode 
+                  [qrdata]="QrCode"
+                  [width]="1024"
+                  [elementType]="'img'"
+                  [errorCorrectionLevel]="'L'">
+                </qrcode> 
+
+                <div class="content-students-in-class">
+
+                  <p class="label-in-class">Alumnos En Clase</p>
+                  <div class="students-in-class" *ngFor="let alumno of studentsInClass">
+                    <div class="online-dot"></div>
+                    <p>{{ alumno.student.name }} {{ alumno.student.lastNameM }} {{alumno.student.lastNameF }}</p>
+                  </div>
+
+                </div>
+
+              </ion-card-content>
+
+              <div *ngIf="getHoraActual() >= curso.horarioInicial && getHoraActual() <= curso.horarioFinal ">
+                <ion-button expand="full" (click)="iniciarClase(curso)" *ngIf="curso.id !== claseActivaId">
+                  Iniciar Clase
+                </ion-button>
+              </div>
+              <ion-button expand="full" (click)="finalizarClase(curso)" *ngIf="curso.id === claseActivaId">
+                Finalizar Clase
+              </ion-button>
+            </ion-card>
+          </ion-col>
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
