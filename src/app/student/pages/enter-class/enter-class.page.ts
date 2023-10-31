@@ -1,6 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
@@ -8,6 +7,7 @@ import jwt_decode from 'jwt-decode';
 
 import { ClassEntryService } from 'src/app/services/classEntry.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 declare var cordova: any;
 
@@ -16,7 +16,7 @@ declare var cordova: any;
   templateUrl: './enter-class.page.html',
   styleUrls: ['./enter-class.page.scss'],
 })
-export class EnterClassPage {
+export class EnterClassPage implements OnInit {
   scannedResult: boolean = false;
   idStudent: string = '';
   classId: string = '';
@@ -25,26 +25,27 @@ export class EnterClassPage {
   token = localStorage.getItem('token');
   private subscription: Subscription | undefined;
 
+  successSound: HTMLAudioElement = new Audio();
+
   constructor(
     private _classEntryService: ClassEntryService,
     private _notificationsService: NotificationsService,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private el: ElementRef,
-  ) {}
+    private _alertService: AlertService,
+    private _cdr: ChangeDetectorRef
+  ) {
+    this.successSound = new Audio('assets/scan-success.mp3');
 
-  mostrarErrorAlert(mensaje: string) {
-    Swal.fire({
-      title: 'Mensaje de alerta',
-      text: mensaje,
-      icon: 'error',
-      customClass: {
-        container: 'custom-swal-container custom-swal-center',
-      },
-    });
+  this.router.events.subscribe((event) => {
+    if (event instanceof NavigationStart) {
+      this.stopScan();
+    }
+  });
+
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.idStudent = decoded['id'];
@@ -61,14 +62,14 @@ export class EnterClassPage {
 
   async requestCameraPermission() {
     document.addEventListener('deviceready', () => {
-      cordova.plugins.permissions.requestPermission(cordova.plugins.permissions.CAMERA, function (status: { hasPermission: any; }) {
+      cordova.plugins.permissions.requestPermission(cordova.plugins.permissions.CAMERA,  (status: { hasPermission: any; }) => {
         if (status.hasPermission) {
           // El usuario concedió permiso para la cámara.
         } else {
-          // El usuario rechazó el permiso para la cámara.
+          this._alertService.showErrorAlert('No se ha concedido permiso para la cámara');
         }
-      }, function () {
-        // Error al solicitar el permiso.
+      },  () => {
+        this._alertService.showErrorAlert('Error al solicitar permiso para la cámara');
       });
     });
   }
@@ -103,6 +104,8 @@ export class EnterClassPage {
         this.classId = resultScan.classId;
 
         this.scannedResult = true;
+
+        this.successSound.play();
 
         BarcodeScanner.showBackground();
         document.querySelector('body')?.classList.remove('scanner-active');
@@ -139,7 +142,7 @@ export class EnterClassPage {
       },
       error: (error: any) => {
         if (error.error.message === 'The student has already been registered in this class') {
-          this.mostrarErrorAlert('Ya se encuentra registrado en esta clase');
+          this._alertService.showErrorAlert('Ya se encuentra registrado en esta clase');
           loading.dismiss();
         }
       },

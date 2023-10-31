@@ -37,10 +37,10 @@ export class AddUserComponent implements OnInit {
   constructor(private userService: UserService, private _appService: AppService, private _alertService: AlertService) {
     this.formulario = new FormGroup({
       rut: new FormControl('', [Validators.required, this.validarRut.bind(this)]),
-      username: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-      lastNameM: new FormControl('', [Validators.required]),
-      lastNameF: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      lastNameM: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      lastNameF: new FormControl('', [Validators.required, Validators.minLength(4)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       role: new FormControl(''),
     });
@@ -72,7 +72,7 @@ export class AddUserComponent implements OnInit {
   getUsers() {
     this.subscription = this.userService.getUsers().subscribe({
       next: ( users: UserInterface[] )=> {
-        if(this.role === Role.TEACHER) {  
+        if(this.role === Role.TEACHER) {
           users = users.filter((user: UserInterface) => user.role === Role.STUDENT);
         }
         this.users = users;

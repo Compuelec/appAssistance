@@ -121,7 +121,11 @@ export class StartClassPage implements OnInit, OnDestroy {
     if (classInCourse) {
       const classData = JSON.parse(classInCourse);
       this.claseActivaId = classData.idCourse;
-      this.QrCode = JSON.stringify({ classId: classData._id });
+      this.QrCode = JSON.stringify({ 
+        classId: classData._id,
+        course: classData.name,
+        room: classData.room,
+      });
       this.studentInClass(classData._id);
 
       if (this.getHoraActual() >= classData.horarioFinal) {
