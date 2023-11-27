@@ -33,7 +33,7 @@ export class NotificationsService implements OnDestroy {
   }
 
   // Emitir un evento específico
-  sendNotificationsEnterRoom(payload: { room: string; idUser: string; classId: string }) {
+  sendNotificationsEnterRoom(payload: { room: string; idUser: string; classId: string; alumnoName: string }) {
     this.socket.emit('student_enters', payload);
   }
 

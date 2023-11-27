@@ -45,5 +45,19 @@ export class AlertService {
     });
   }
 
+  showEnterClassAlert(title: string, mensaje: string) {
+    Swal.fire({
+      title: title,
+      text: mensaje,
+      position: 'top-end',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      customClass: {
+        container: 'custom-swal-container custom-swal-center',
+      },
+    });
+  }
+
 
 }
