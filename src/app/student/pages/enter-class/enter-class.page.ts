@@ -22,6 +22,7 @@ export class EnterClassPage implements OnInit {
   classId: string = '';
   room: string = '';
   course: string = '';
+  nombreUser: string = '';
   token = localStorage.getItem('token');
   private subscription: Subscription | undefined;
 
@@ -49,6 +50,7 @@ export class EnterClassPage implements OnInit {
     if (this.token !== null) {
       const decoded: any = jwt_decode(this.token);
       this.idStudent = decoded['id'];
+      this.nombreUser = decoded['username'];
     }
 
     if (this.isMobileDevice()) {
@@ -151,6 +153,7 @@ export class EnterClassPage implements OnInit {
           room: this.room,
           idUser: this.idStudent,
           classId: this.classId,
+          alumnoName: this.nombreUser,
           // classId: "_2d096b15-efa1-449c-a55c-94cd05e677b"
         });
         console.log('Completado');

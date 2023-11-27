@@ -39,8 +39,8 @@ export class StartClassPage implements OnInit, OnDestroy {
       room: 'Sala 25',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 10,
-      horarioInicial: '12:00',
-      horarioFinal: '14:00',
+      horarioInicial: '09:00',
+      horarioFinal: '22:00',
       dias: ['Lunes', 'Martes', 'Miércoles', 'Viernes', 'Sábado', 'Domingo'],
     },
     {
@@ -52,8 +52,8 @@ export class StartClassPage implements OnInit, OnDestroy {
       room: 'Sala 26',
       professor: 'Marcos Vinicius',
       cantidadAlumnos: 12,
-      horarioInicial: '01:00',
-      horarioFinal: '01:33',
+      horarioInicial: '09:00',
+      horarioFinal: '22:00',
       dias: ['Lunes', 'Martes', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
     },
     {
@@ -65,8 +65,8 @@ export class StartClassPage implements OnInit, OnDestroy {
       room: 'Sala 29',
       professor: 'Miss. Mariana',
       cantidadAlumnos: 12,
-      horarioInicial: '12:30',
-      horarioFinal: '14:30',
+      horarioInicial: '09:00',
+      horarioFinal: '22:00',
       dias: ['Lunes', 'Martes', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
     },
     {
@@ -78,8 +78,8 @@ export class StartClassPage implements OnInit, OnDestroy {
       room: 'Sala 45',
       professor: 'Carlos Espinoza',
       cantidadAlumnos: 12,
-      horarioInicial: '19:10',
-      horarioFinal: '20:35',
+      horarioInicial: '09:00',
+      horarioFinal: '22:00',
       dias: ['Lunes', 'Martes', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
     }
   ];
@@ -141,6 +141,7 @@ export class StartClassPage implements OnInit, OnDestroy {
       (data: any) => {
         if (data.classId) {
           this.studentInClass(data.classId);
+          this._alertService.showEnterClassAlert('¡Alumno en clase!', `${data.alumnoName} ha ingresado a la clase`);
         }
       }
     );
@@ -202,9 +203,9 @@ export class StartClassPage implements OnInit, OnDestroy {
     const student = this._classEntryService.getStudents(idClass).subscribe(
       (data) => {
         this.studentsInClass = data;
-        this._cdr.detectChanges();
       }
     );
+    this._cdr.detectChanges();
   }
 
   finalizarClase(curso: any) {
@@ -213,6 +214,7 @@ export class StartClassPage implements OnInit, OnDestroy {
     this.claseActivaId = '';
     this.QrCode = '';
     curso.mostrarContenido = false;
+    this.studentsInClass = [];
     this._alertService.showExitoAlert('Clase finalizada con éxito');
   }
 
