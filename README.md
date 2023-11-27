@@ -90,4 +90,4 @@ password: 123456789
 <a href="https://apiappassistance.compuelec.cl/doc" target="_blank">LINK</a>
 
 ## Apk de prueba
-<a href="https://drive.google.com/file/d/1GdTwD_MCpcApYUxjkZeyHzt61renh5xj/view?usp=drive_link">DESCARGAR APK</a>
+<a href="https://drive.google.com/file/d/1MPalmPyBipxVAljeQOAodVft6wfapY_2/view?usp=drive_link">DESCARGAR APK</a>
